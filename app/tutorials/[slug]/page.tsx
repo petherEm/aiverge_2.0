@@ -18,9 +18,10 @@ import CodeBlock from "@/components/code-block";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getPost(params.slug);
+  const resolvedParams = await params;
+  const post = await getPost(resolvedParams.slug);
 
   return post ? { title: post.title, description: post.excerpt } : {};
 }
@@ -28,11 +29,10 @@ export async function generateMetadata({
 export default async function BlogPost({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = (await getPost(params.slug)) || notFound();
-
-  console.log("POST", post.body);
+  const resolvedParams = await params;
+  const post = (await getPost(resolvedParams.slug)) || notFound();
 
   return (
     <main className="overflow-hidden">

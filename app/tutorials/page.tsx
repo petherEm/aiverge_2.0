@@ -278,19 +278,20 @@ async function Pagination({
 export default async function Tutorials({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  // Await searchParams before accessing its properties
+  const params = await searchParams;
+
   const page =
-    "page" in searchParams
-      ? typeof searchParams.page === "string" && parseInt(searchParams.page) > 1
-        ? parseInt(searchParams.page)
+    "page" in params
+      ? typeof params.page === "string" && Number.parseInt(params.page) > 1
+        ? Number.parseInt(params.page)
         : notFound()
       : 1;
 
   const category =
-    typeof searchParams.category === "string"
-      ? searchParams.category
-      : undefined;
+    typeof params.category === "string" ? params.category : undefined;
 
   return (
     <main className="overflow-hidden">
