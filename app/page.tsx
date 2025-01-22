@@ -66,19 +66,20 @@ async function DarkBentoSection() {
               description={project.shortDescription}
               graphic={
                 <Image
-                  src={urlFor(project.mainImage).url() || "/placeholder.svg"}
-                  alt={project.title}
+                  src={project.mainImage ? urlFor(project.mainImage).url() : ""}
+                  alt={project.title || "Project image"}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
               }
-              progress={project.progress}
-              stacks={project.stacks.map((stack) => ({
-                name: stack.title,
+              progress={project.progress ? Number(project.progress) : undefined}
+              stacks={(project.stacks ?? []).map((stack) => ({
+                name: stack.title ?? "Unknown Stack",
                 image:
-                  urlFor(stack.image).width(32).height(32).url() ||
-                  "/placeholder.svg",
+                  (stack.image
+                    ? urlFor(stack.image).width(32).height(32).url()
+                    : "") || "",
               }))}
               github="https://github.com/username/project"
               fade={["top"]}
