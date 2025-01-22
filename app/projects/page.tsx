@@ -34,6 +34,11 @@ export const metadata: Metadata = {
     "See our latest projects and learn how we're helping businesses grow.",
 };
 
+interface PageProps {
+  page?: string;
+  category?: string;
+}
+
 const postsPerPage = 5;
 
 async function FeaturedPosts() {
@@ -236,7 +241,7 @@ async function Pagination({
 export default async function TechCorner({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: PageProps;
 }) {
   const page =
     "page" in searchParams
