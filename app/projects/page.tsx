@@ -153,7 +153,6 @@ async function Posts({ page, category }: { page: number; category?: string }) {
           </div>
           <div className="sm:col-span-2 sm:max-w-2xl">
             <h2 className="text-sm/5 font-medium">{project.title}</h2>
-            <p className="mt-3 text-sm/6 text-gray-500">{project.excerpt}</p>
             <div className="mt-4">
               <Link
                 href={`/blog/${project.slug}`}
