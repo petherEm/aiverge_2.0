@@ -42,7 +42,7 @@ function Hero() {
 }
 
 async function DarkBentoSection() {
-  let featuredProjects = await getProjects(0, 3);
+  const featuredProjects = await getProjects(0, 3);
   console.log(featuredProjects);
 
   if (featuredProjects.length === 0) {

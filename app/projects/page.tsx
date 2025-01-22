@@ -10,8 +10,6 @@ import { Heading, Lead, Subheading } from "@/components/text";
 import { urlFor } from "@/sanity/lib/image";
 import {
   getCategories,
-  getFeaturedPosts,
-  getPosts,
   getPostsCount,
   getProjects,
 } from "@/sanity/lib/queries";
@@ -27,7 +25,7 @@ import { clsx } from "clsx";
 import dayjs from "dayjs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import ProgressBar from "@/components/progress-bar";
+
 import { ProjectGrid } from "@/components/project-grid";
 
 export const metadata: Metadata = {
@@ -39,7 +37,7 @@ export const metadata: Metadata = {
 const postsPerPage = 5;
 
 async function FeaturedPosts() {
-  let featuredProjects = await getProjects(0, 3);
+  const featuredProjects = await getProjects(0, 3);
 
   if (featuredProjects.length === 0) {
     return;
@@ -56,7 +54,7 @@ async function FeaturedPosts() {
 }
 
 async function Categories({ selected }: { selected?: string }) {
-  let categories = await getCategories();
+  const categories = await getCategories();
   console.log(categories);
 
   if (categories.length === 0) {
@@ -108,7 +106,7 @@ async function Categories({ selected }: { selected?: string }) {
 }
 
 async function Posts({ page, category }: { page: number; category?: string }) {
-  let projects = await getProjects(
+  const projects = await getProjects(
     (page - 1) * postsPerPage,
     page * postsPerPage,
     category
@@ -181,7 +179,7 @@ async function Pagination({
   category?: string;
 }) {
   function url(page: number) {
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
 
     if (category) params.set("category", category);
     if (page > 1) params.set("page", page.toString());
@@ -189,12 +187,12 @@ async function Pagination({
     return params.size !== 0 ? `/blog?${params.toString()}` : "/blog";
   }
 
-  let totalPosts = await getPostsCount(category);
-  let hasPreviousPage = page - 1;
-  let previousPageUrl = hasPreviousPage ? url(page - 1) : undefined;
-  let hasNextPage = page * postsPerPage < totalPosts;
-  let nextPageUrl = hasNextPage ? url(page + 1) : undefined;
-  let pageCount = Math.ceil(totalPosts / postsPerPage);
+  const totalPosts = await getPostsCount(category);
+  const hasPreviousPage = page - 1;
+  const previousPageUrl = hasPreviousPage ? url(page - 1) : undefined;
+  const hasNextPage = page * postsPerPage < totalPosts;
+  const nextPageUrl = hasNextPage ? url(page + 1) : undefined;
+  const pageCount = Math.ceil(totalPosts / postsPerPage);
 
   if (pageCount < 2) {
     return;
@@ -240,14 +238,14 @@ export default async function TechCorner({
 }: {
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  let page =
+  const page =
     "page" in searchParams
       ? typeof searchParams.page === "string" && parseInt(searchParams.page) > 1
         ? parseInt(searchParams.page)
         : notFound()
       : 1;
 
-  let category =
+  const category =
     typeof searchParams.category === "string"
       ? searchParams.category
       : undefined;
