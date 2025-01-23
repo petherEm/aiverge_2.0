@@ -1,11 +1,11 @@
-import {TagIcon} from '@sanity/icons'
+import {CogIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
 export const stackType = defineType({
   name: 'stack',
   title: 'Stack',
   type: 'document',
-  icon: TagIcon,
+  icon: CogIcon,
   fields: [
     defineField({
       name: 'title',

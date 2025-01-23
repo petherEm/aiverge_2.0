@@ -576,6 +576,20 @@
         },
         "optional": true
       },
+      "liveLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "githubLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "shortDescription": {
         "type": "objectAttribute",
         "value": {

@@ -13,18 +13,16 @@ function CallToAction() {
       <hgroup>
         <Subheading>Get started</Subheading>
         <p className="mt-6 text-3xl font-medium tracking-tight text-gray-950 sm:text-5xl">
-          Ready to dive in?
+          Let's get in touch!
           <br />
-          Start your free trial today.
         </p>
       </hgroup>
       <p className="mx-auto mt-6 max-w-xs text-sm/6 text-gray-500">
-        Get the cheat codes for selling and unlock your team&apos;s revenue
-        potential.
+        Reach out to us for any queries or to get started with our solutions.
       </p>
       <div className="mt-6">
         <Button className="w-full sm:w-auto" href="#">
-          Get started
+          Get in touch
         </Button>
       </div>
     </div>
@@ -54,25 +52,17 @@ function Sitemap() {
   return (
     <>
       <div>
-        <SitemapHeading>Product</SitemapHeading>
-        <SitemapLinks>
-          <SitemapLink href="/pricing">Pricing</SitemapLink>
-          <SitemapLink href="#">Analysis</SitemapLink>
-          <SitemapLink href="#">API</SitemapLink>
-        </SitemapLinks>
-      </div>
-      <div>
         <SitemapHeading>Company</SitemapHeading>
         <SitemapLinks>
           <SitemapLink href="#">Careers</SitemapLink>
           <SitemapLink href="/tutorials">Tutorials</SitemapLink>
-          <SitemapLink href="/company">Company</SitemapLink>
+          <SitemapLink href="/company">Projects</SitemapLink>
         </SitemapLinks>
       </div>
       <div>
         <SitemapHeading>Support</SitemapHeading>
         <SitemapLinks>
-          <SitemapLink href="#">Help center</SitemapLink>
+          <SitemapLink href="#">Contact</SitemapLink>
           <SitemapLink href="#">Community</SitemapLink>
         </SitemapLinks>
       </div>

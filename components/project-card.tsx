@@ -3,6 +3,8 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image"; // Assuming this is your Sanity config
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Github } from "lucide-react";
+import { Subheading } from "./text";
 
 interface Stack {
   name: string;
@@ -17,7 +19,8 @@ interface Author {
 interface ProjectCardProps {
   slug: string;
   title: string;
-  excerpt: string;
+  excerpt?: string;
+  shortDescription?: string;
   mainImage: {
     alt?: string;
   };
@@ -32,6 +35,7 @@ export function ProjectCard({
   title,
   excerpt,
   mainImage,
+  shortDescription,
   progress,
   stacks,
   author,
@@ -39,21 +43,23 @@ export function ProjectCard({
 }: ProjectCardProps) {
   return (
     <Card className="group relative flex flex-col overflow-hidden transition-all hover:shadow-lg">
-      <Link href={`/blog/${slug}`} className="absolute inset-0 z-10" />
+      <Link href={`/projects/${slug}`} className="absolute inset-0 z-10" />
       {mainImage && (
         <div className="relative aspect-[3/2] overflow-hidden">
           <Image
             alt={mainImage.alt || "Project Image"}
-            src={urlFor(mainImage).size(1170, 780).url() || "/placeholder.svg"}
+            src={urlFor(mainImage).url() || "/placeholder.svg"}
             width={1170}
-            height={780}
+            height={680}
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         </div>
       )}
       <CardHeader className="flex-1">
         <h3 className="text-xl font-semibold tracking-tight">{title}</h3>
-        <p className="text-sm text-muted-foreground line-clamp-2">{excerpt}</p>
+        <p className="max-w-[600px] text-sm/6 text-gray-600 group-data-[dark]:text-gray-400 line-clamp-3 [display:-webkit-box] [-webkit-box-orient:vertical] [min-height:4.5em]">
+          {shortDescription}
+        </p>
       </CardHeader>
       <CardContent className="space-y-4">
         {progress !== undefined && (
@@ -68,10 +74,7 @@ export function ProjectCard({
         {stacks && stacks.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {stacks.map((stack, i) => (
-              <div
-                key={i}
-                className="relative size-8 rounded-lg bg-muted p-1 hover:bg-muted/80"
-              >
+              <div key={i} className="relative size-8 rounded-lg  p-1">
                 <Image
                   src={
                     urlFor(stack.image).size(64, 64).url() || "/placeholder.svg"
@@ -85,21 +88,21 @@ export function ProjectCard({
             ))}
           </div>
         )}
-        {/* {github && (
+        {/* GitHub Link */}
+        {github && (
           <div className="relative z-20">
             <a
               href={github}
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+              className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-gray-950 group-data-[dark]:text-gray-400 group-data-[dark]:hover:text-white"
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
             >
               <Github className="size-4" />
-              <span>View on GitHub</span>
+              <span>GitHub</span>
             </a>
           </div>
-        )} */}
-        <p>Github</p>
+        )}
       </CardContent>
     </Card>
   );

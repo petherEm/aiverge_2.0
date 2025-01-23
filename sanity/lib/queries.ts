@@ -188,6 +188,39 @@ export async function getPost(slug: string) {
   }
 }
 
+const PROJECT_QUERY = defineQuery(/* groq */ `*[
+  _type == "project"
+  && slug.current == $slug
+][0]{
+  publishedAt,
+  title,
+  mainImage,
+  excerpt,
+  body,
+  shortDescription,
+  author->{
+    name,
+    image,
+  },
+  categories[]->{
+    title,
+    "slug": slug.current,
+  }
+}`);
+
+export async function getProject(slug: string) {
+  try {
+    const response = await sanityFetch({
+      query: PROJECT_QUERY,
+      params: { slug },
+    });
+    return response.data || null;
+  } catch (error) {
+    console.error('Error fetching Post:', error);
+    return null;
+  }
+}
+
 const CATEGORIES_QUERY = defineQuery(/* groq */ `*[
   _type == "category"
   && count(*[_type == "post" && defined(slug.current) && ^._id in categories[]._ref]) > 0

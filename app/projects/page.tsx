@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 const postsPerPage = 5;
 
 async function FeaturedPosts() {
-  const featuredProjects = await getProjects(0, 3);
+  const featuredProjects = await getProjects(0, 20);
 
   if (featuredProjects.length === 0) {
     return;
@@ -75,7 +75,7 @@ async function Categories({ selected }: { selected?: string }) {
         >
           <MenuItem>
             <Link
-              href="/blog"
+              href="/projects"
               data-selected={selected === undefined ? true : undefined}
               className="group grid grid-cols-[1rem,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5"
             >
@@ -86,7 +86,7 @@ async function Categories({ selected }: { selected?: string }) {
           {categories.map((category) => (
             <MenuItem key={category.slug}>
               <Link
-                href={`/blog?category=${category.slug}`}
+                href={`/projects?category=${category.slug}`}
                 data-selected={category.slug === selected ? true : undefined}
                 className="group grid grid-cols-[16px,1fr] items-center gap-2 rounded-md px-2 py-1 data-[focus]:bg-gray-950/5"
               >
@@ -97,7 +97,7 @@ async function Categories({ selected }: { selected?: string }) {
           ))}
         </MenuItems>
       </Menu>
-      <Button variant="outline" href="/blog/feed.xml" className="gap-1">
+      <Button variant="outline" href="/projects/feed.xml" className="gap-1">
         <RssIcon className="size-4" />
         RSS Feed
       </Button>
@@ -105,7 +105,13 @@ async function Categories({ selected }: { selected?: string }) {
   );
 }
 
-async function Posts({ page, category }: { page: number; category?: string }) {
+async function Projects({
+  page,
+  category,
+}: {
+  page: number;
+  category?: string;
+}) {
   const projects = await getProjects(
     (page - 1) * postsPerPage,
     page * postsPerPage,
@@ -155,7 +161,7 @@ async function Posts({ page, category }: { page: number; category?: string }) {
             <h2 className="text-sm/5 font-medium">{project.title}</h2>
             <div className="mt-4">
               <Link
-                href={`/blog/${project.slug}`}
+                href={`/projects/${project.slug}`}
                 className="flex items-center gap-1 text-sm/5 font-medium"
               >
                 <span className="absolute inset-0" />
@@ -183,7 +189,7 @@ async function Pagination({
     if (category) params.set("category", category);
     if (page > 1) params.set("page", page.toString());
 
-    return params.size !== 0 ? `/blog?${params.toString()}` : "/blog";
+    return params.size !== 0 ? `/projects?${params.toString()}` : "/projects";
   }
 
   const totalPosts = await getPostsCount(category);
@@ -267,7 +273,7 @@ export default async function TechCorner({
       {page === 1 && !category && <FeaturedPosts />}
       <Container className="mt-16 pb-24">
         <Categories selected={category} />
-        <Posts page={page} category={category} />
+        <Projects page={page} category={category} />
         <Pagination page={page} category={category} />
       </Container>
       <Footer />

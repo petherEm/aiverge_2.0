@@ -1,4 +1,4 @@
-import {DocumentTextIcon} from '@sanity/icons'
+import {BulbFilledIcon} from '@sanity/icons'
 import { groq } from 'next-sanity'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
@@ -8,7 +8,7 @@ export const projectType = defineType({
   name: 'project',
   title: 'Project',
   type: 'document',
-  icon: DocumentTextIcon,
+  icon: BulbFilledIcon,
   fields: [
     defineField({
       name: 'title',
@@ -59,10 +59,18 @@ export const projectType = defineType({
       type: 'string',
     }),
     defineField({
+      name: 'liveLink',
+      type: 'url',
+    }),
+    
+    defineField({
+      name: 'githubLink',
+      type: 'url',
+    }),
+    defineField({
       name: 'shortDescription',
       type: 'string',
     }),
-    
     defineField({
       name: 'body',
       type: 'blockContent',

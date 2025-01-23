@@ -110,6 +110,8 @@ export type Project = {
   }>;
   publishedAt?: string;
   progress?: string;
+  liveLink?: string;
+  githubLink?: string;
   shortDescription?: string;
   body?: Array<{
     children?: Array<{
@@ -647,6 +649,80 @@ export type POST_QUERYResult = {
     slug: string | null;
   }> | null;
 } | null;
+// Variable: PROJECT_QUERY
+// Query: *[  _type == "project"  && slug.current == $slug][0]{  publishedAt,  title,  mainImage,  excerpt,  body,  shortDescription,  author->{    name,    image,  },  categories[]->{    title,    "slug": slug.current,  }}
+export type PROJECT_QUERYResult = {
+  publishedAt: string | null;
+  title: string | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  excerpt: null;
+  body: Array<{
+    _key: string;
+  } & Code | {
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  } | {
+    style?: "line" | "space";
+    _type: "separator";
+    _key: string;
+  }> | null;
+  shortDescription: string | null;
+  author: {
+    name: string | null;
+    image: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+  } | null;
+  categories: Array<{
+    title: string | null;
+    slug: string | null;
+  }> | null;
+} | null;
 // Variable: CATEGORIES_QUERY
 // Query: *[  _type == "category"  && count(*[_type == "post" && defined(slug.current) && ^._id in categories[]._ref]) > 0]|order(title asc){  title,  "slug": slug.current,}
 export type CATEGORIES_QUERYResult = Array<{
@@ -664,6 +740,7 @@ declare module "@sanity/client" {
     "*[\n  _type == \"post\"\n  && isFeatured == true\n  && defined(slug.current)\n]|order(publishedAt desc)[0...$quantity]{\n  title,\n  \"slug\": slug.current,\n  publishedAt,\n  mainImage,\n  excerpt,\n  author->{\n    name,\n    image,\n  },\n}": FEATURED_POSTS_QUERYResult;
     "*[\n  _type == \"post\"\n  && defined(slug.current)\n]|order(isFeatured, publishedAt desc){\n  title,\n  \"slug\": slug.current,\n  publishedAt,\n  mainImage,\n  excerpt,\n  author->{\n    name,\n  },\n}": FEED_POSTS_QUERYResult;
     "*[\n  _type == \"post\"\n  && slug.current == $slug\n][0]{\n  publishedAt,\n  title,\n  mainImage,\n  excerpt,\n  body,\n  author->{\n    name,\n    image,\n  },\n  categories[]->{\n    title,\n    \"slug\": slug.current,\n  }\n}": POST_QUERYResult;
+    "*[\n  _type == \"project\"\n  && slug.current == $slug\n][0]{\n  publishedAt,\n  title,\n  mainImage,\n  excerpt,\n  body,\n  shortDescription,\n  author->{\n    name,\n    image,\n  },\n  categories[]->{\n    title,\n    \"slug\": slug.current,\n  }\n}": PROJECT_QUERYResult;
     "*[\n  _type == \"category\"\n  && count(*[_type == \"post\" && defined(slug.current) && ^._id in categories[]._ref]) > 0\n]|order(title asc){\n  title,\n  \"slug\": slug.current,\n}": CATEGORIES_QUERYResult;
   }
 }

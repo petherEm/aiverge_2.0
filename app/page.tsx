@@ -42,7 +42,7 @@ function Hero() {
 }
 
 async function DarkBentoSection() {
-  const featuredProjects = await getProjects(0, 3);
+  const featuredProjects = await getProjects(0, 10);
   console.log(featuredProjects);
 
   if (featuredProjects.length === 0) {
@@ -61,6 +61,7 @@ async function DarkBentoSection() {
             <BentoCard
               key={project.slug}
               dark
+              slug={project.slug || "/projects"}
               eyebrow="e-commerce"
               title={project.title}
               description={project.shortDescription}
@@ -99,8 +100,8 @@ export default function Home() {
       <main>
         <div className="bg-gradient-to-b from-white from-50% to-gray-100 py-12">
           <StackIntro />
+          <DarkBentoSection />
         </div>
-        <DarkBentoSection />
       </main>
       <Testimonials />
       <Footer />
