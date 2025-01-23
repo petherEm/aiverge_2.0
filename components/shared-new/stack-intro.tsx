@@ -85,7 +85,7 @@ const StackIntro = () => {
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
             We use Medusa 2.0, a highly customizable and scalable digital
             commerce platform, to develop tailored e-commerce solutions for our
-            clients. Medusa's suite of commerce modules efficiently manages
+            clients. Medusa&apos;s suite of commerce modules efficiently manages
             essential functionalities, including inventory tracking, cart total
             calculations, payment processing, and order management. Its modular
             architecture empowers us to adapt and extend the platform to meet
@@ -129,9 +129,9 @@ const StackIntro = () => {
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
             We work extensively with Vercel, a premier cloud platform that
             enables us to build, deploy, and manage high-performance web
-            applications effortlessly. Vercel's robust infrastructure and
+            applications effortlessly. Vercel&apos;s robust infrastructure and
             developer-centric features allow us to deliver exceptional digital
-            experiences tailored to our clients' unique needs.
+            experiences tailored to our clients&apos; unique needs.
           </p>
           <Button variant="ghost" className="mt-4">
             <Link href="https://vercel.com/" target="_blank">
@@ -150,10 +150,10 @@ const StackIntro = () => {
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
             We also use Railway, a modern infrastructure platform that
             simplifies the provisioning, development, and deployment of
-            applications to the cloud. Railway's user-friendly interface and
-            robust features enable us to build, deploy, manage, and scale
+            applications to the cloud. Railway&apos;s user-friendly interface
+            and robust features enable us to build, deploy, manage, and scale
             applications efficiently, allowing us to focus on delivering
-            high-quality solutions tailored to our clients' needs.
+            high-quality solutions tailored to our clients&apos; needs.
           </p>
           <Button variant="ghost" className="mt-4">
             <Link href="https://railway.com/" target="_blank">
@@ -172,9 +172,10 @@ const StackIntro = () => {
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
             We also work with Sanity, a modern headless Content Management
             System (CMS) that empowers us to create, manage, and deliver
-            structured content across various platforms. Sanity's flexibility
-            and real-time collaboration capabilities enable us to build tailored
-            digital experiences that align with our clients' unique needs.
+            structured content across various platforms. Sanity&apos;s
+            flexibility and real-time collaboration capabilities enable us to
+            build tailored digital experiences that align with our clients&apos;
+            unique needs.
           </p>
           <Button variant="ghost" className="mt-4">
             <Link href="https://www.sanity.io/" target="_blank">
@@ -191,11 +192,11 @@ const StackIntro = () => {
             height={200}
           />
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
-            We integrate with OpenAI's advanced artificial intelligence
+            We integrate with OpenAI&apos;s advanced artificial intelligence
             technologies to enhance our projects with intelligent, responsive,
-            and innovative solutions. OpenAI's suite of AI models and tools
+            and innovative solutions. OpenAI&apos;s suite of AI models and tools
             enables us to build and scale AI-driven applications that cater to
-            our clients' diverse needs.
+            our clients&apos; diverse needs.
           </p>
           <Button variant="ghost" className="mt-4">
             <Link href="https://platform.openai.com/" target="_blank">
@@ -214,10 +215,11 @@ const StackIntro = () => {
           <p className="mt-6 max-w-lg text-sm/6 text-gray-500">
             Hugging Face, a leading open-source platform in artificial
             intelligence, enables us to enhance our projects with
-            state-of-the-art machine learning models and tools. Hugging Face's
-            comprehensive suite of libraries and community-driven resources
-            allows us to build, deploy, and manage AI-powered applications
-            efficiently, catering to our clients' diverse needs.
+            state-of-the-art machine learning models and tools. Hugging
+            Face&apos;s comprehensive suite of libraries and community-driven
+            resources allows us to build, deploy, and manage AI-powered
+            applications efficiently, catering to our clients&apos; diverse
+            needs.
           </p>
           <Button variant="ghost" className="mt-4">
             <Link href="https://huggingface.co/" target="_blank">

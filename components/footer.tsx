@@ -13,7 +13,7 @@ function CallToAction() {
       <hgroup>
         <Subheading>Get started</Subheading>
         <p className="mt-6 text-3xl font-medium tracking-tight text-gray-950 sm:text-5xl">
-          Let's get in touch!
+          Let&apos;s get in touch!
           <br />
         </p>
       </hgroup>
